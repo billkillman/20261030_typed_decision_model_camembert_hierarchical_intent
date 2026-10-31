@@ -1,0 +1,145 @@
+{
+ "primary_metric": "macro_f1",
+ "direction": "max",
+ "metric_labels": {
+  "macro_f1": "macro-F1 (classe fine)",
+  "accuracy": "exactitude (classe fine)",
+  "parent_accuracy": "exactitude du motif parent",
+  "parent_error_rate": "part des erreurs de motif parent",
+  "expected_calibration_error": "ECE (15 intervalles)",
+  "brier_score": "score de Brier multiclasse",
+  "permutation_agreement": "accord sous permutation des options",
+  "p95_latency_ms": "latence P95 (ms, lot de 1)"
+ },
+ "dataset": {
+  "name": "mteb/amazon_massive_intent",
+  "config": "fr",
+  "split": "test",
+  "n_examples": 100
+ },
+ "approaches": [
+  {
+   "name": "CamemBERT-base fine-tuné",
+   "role": "reference",
+   "metrics": {
+    "macro_f1": 0.025608339707090446,
+    "accuracy": 0.1,
+    "parent_accuracy": 0.29,
+    "parent_error_rate": 0.7888888888888889,
+    "expected_calibration_error": 0.005229635190443532,
+    "brier_score": 0.9637426313744405,
+    "permutation_agreement": null,
+    "p95_latency_ms": 40.86
+   },
+   "ci95": {
+    "macro_f1": [
+     0.014516375880012243,
+     0.0471867966991748
+    ],
+    "accuracy": [
+     0.04,
+     0.16
+    ],
+    "parent_accuracy": [
+     0.2,
+     0.38
+    ],
+    "parent_error_rate": [
+     0.7045454545454546,
+     0.8690476190476191
+    ],
+    "expected_calibration_error": [
+     0.003490361349087548,
+     0.06464780178717117
+    ],
+    "brier_score": [
+     0.9511486358335088,
+     0.9756323182878187
+    ]
+   },
+   "latency_ms": {
+    "p50": 33.9,
+    "p95": 40.86
+   },
+   "notes": "1000 exemples, 1 époque(s), époque retenue 1, température 0.18, cpu"
+  },
+  {
+   "name": "Décision typée hiérarchique (Qwen/Qwen3-0.6B)",
+   "role": "new",
+   "metrics": {
+    "macro_f1": 0.0025839793281653744,
+    "accuracy": 0.01,
+    "parent_accuracy": 0.01,
+    "parent_error_rate": 1.0,
+    "expected_calibration_error": 0.4897983736647667,
+    "brier_score": 1.4843372290674017,
+    "permutation_agreement": 0.0,
+    "p95_latency_ms": 1142.33
+   },
+   "ci95": {
+    "macro_f1": [
+     0.0,
+     0.009569377990430622
+    ],
+    "accuracy": [
+     0.0,
+     0.03
+    ],
+    "parent_accuracy": [
+     0.0,
+     0.03
+    ],
+    "parent_error_rate": [
+     1.0,
+     1.0
+    ],
+    "expected_calibration_error": [
+     0.4684862623352428,
+     0.5026799290115027
+    ],
+    "brier_score": [
+     1.4628389213607824,
+     1.498563493834623
+    ],
+    "permutation_agreement": [
+     0.0,
+     0.0
+    ]
+   },
+   "latency_ms": {
+    "p50": 960.62,
+    "p95": 1142.33
+   },
+   "notes": "substitut, probabilité des lettres, zéro-shot ; 100 messages évalués sur 110 prévus (limite de messages de l'échelle réduite) ; motifs détaillés : 1 ; T motif 1.44, T sous-motif 3.71 ; réponses illisibles 0.00% ; cpu"
+  }
+ ],
+ "phase": "public",
+ "scale": "reduced",
+ "seed": 42,
+ "date": "2026-10-31T13:15:07+00:00",
+ "environment": {
+  "python": "3.12.16",
+  "system": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.41",
+  "cpu": 4,
+  "ram_gb": 15.6,
+  "device": "cpu",
+  "gpu": null,
+  "scale": "reduced",
+  "versions": {
+   "torch": "2.15.0+cpu",
+   "transformers": "5.19.0",
+   "datasets": "5.1.0",
+   "sentence-transformers": "6.2.0",
+   "scikit-learn": "1.9.1",
+   "numpy": "2.5.4",
+   "pandas": "3.1.0",
+   "openai": "3.42.0",
+   "xgboost": "3.4.1"
+  }
+ },
+ "service_calls": {
+  "n": 0,
+  "failures": 0,
+  "seconds": 0
+ }
+}

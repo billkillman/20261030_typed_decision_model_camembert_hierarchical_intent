@@ -1,0 +1,148 @@
+{
+ "primary_metric": "macro_f1",
+ "direction": "max",
+ "metric_labels": {
+  "macro_f1": "macro-F1 (classe fine)",
+  "accuracy": "exactitude (classe fine)",
+  "parent_accuracy": "exactitude du motif parent",
+  "parent_error_rate": "part des erreurs de motif parent",
+  "expected_calibration_error": "ECE (15 intervalles)",
+  "brier_score": "score de Brier multiclasse",
+  "permutation_agreement": "accord sous permutation des options",
+  "p95_latency_ms": "latence P95 (ms, lot de 1)"
+ },
+ "dataset": {
+  "name": "mteb/amazon_massive_intent",
+  "config": "fr",
+  "split": "test",
+  "n_examples": 404
+ },
+ "approaches": [
+  {
+   "name": "CamemBERT-base fine-tuné",
+   "role": "reference",
+   "metrics": {
+    "macro_f1": 0.8077034958726389,
+    "accuracy": 0.8638613861386139,
+    "parent_accuracy": 0.8960396039603961,
+    "parent_error_rate": 0.7636363636363637,
+    "expected_calibration_error": 0.04345251847708085,
+    "brier_score": 0.2234040184504833,
+    "permutation_agreement": null,
+    "p95_latency_ms": 17.01
+   },
+   "ci95": {
+    "macro_f1": [
+     0.7645369606165637,
+     0.8712017165334539
+    ],
+    "accuracy": [
+     0.8316831683168316,
+     0.8960396039603961
+    ],
+    "parent_accuracy": [
+     0.8663366336633663,
+     0.9257425742574258
+    ],
+    "parent_error_rate": [
+     0.65,
+     0.8793103448275862
+    ],
+    "expected_calibration_error": [
+     0.03106815593647754,
+     0.08083458422188439
+    ],
+    "brier_score": [
+     0.17319571536507886,
+     0.27868079093874343
+    ]
+   },
+   "latency_ms": {
+    "p50": 14.34,
+    "p95": 17.01
+   },
+   "notes": "11514 exemples, 10 époque(s), époque retenue 9, température 1.25, cuda"
+  },
+  {
+   "name": "Décision typée hiérarchique (baselabs/joey-1)",
+   "role": "new",
+   "metrics": {
+    "macro_f1": 0.7060155759363572,
+    "accuracy": 0.7722772277227723,
+    "parent_accuracy": 0.806930693069307,
+    "parent_error_rate": 0.8478260869565217,
+    "expected_calibration_error": 0.048038551256713954,
+    "brier_score": 0.33203525849923726,
+    "permutation_agreement": 0.9207920792079208,
+    "p95_latency_ms": 8254.08
+   },
+   "ci95": {
+    "macro_f1": [
+     0.653337977999285,
+     0.7685810995527141
+    ],
+    "accuracy": [
+     0.7301980198019802,
+     0.8118811881188119
+    ],
+    "parent_accuracy": [
+     0.7673267326732673,
+     0.844059405940594
+    ],
+    "parent_error_rate": [
+     0.7676767676767676,
+     0.9156626506024096
+    ],
+    "expected_calibration_error": [
+     0.04355545136568006,
+     0.09424456171137861
+    ],
+    "brier_score": [
+     0.2810634733361621,
+     0.38165237587143946
+    ],
+    "permutation_agreement": [
+     0.8960396039603961,
+     0.9455445544554455
+    ]
+   },
+   "latency_ms": {
+    "p50": 8216.93,
+    "p95": 8254.08
+   },
+   "notes": "modèle de décision via le runtime qev de OneJev (81ce62f159, serve.patch), {'attention': 'noncausal', 'readout': 'slot_lm', 'fork_mode': 'batched', 'fork_max_abs_diff': 2.8013393271741904e-08, 'linear_attention_kernel': 'fla.ops.gated_delta_rule.chunk', 'torch': '2.11.0+cu130', 'triton': '3.6.0', 'flash-linear-attention': '0.5.2', 'transformers': '5.19.0'}, zéro-shot ; 404 messages évalués sur 1500 prévus (budget de temps de 3600 s) ; motifs détaillés : tous ; T motif 1.16, T sous-motif 0.87 ; réponses illisibles 0.00% ; cuda"
+  }
+ ],
+ "phase": "public",
+ "scale": "full",
+ "seed": 42,
+ "date": "2026-10-31T14:44:29+00:00",
+ "environment": {
+  "python": "3.13.16",
+  "system": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "cpu": 2,
+  "ram_gb": 12.7,
+  "device": "cuda",
+  "gpu": {
+   "name": "Tesla T4",
+   "memory_gb": 14.6
+  },
+  "scale": "full",
+  "versions": {
+   "torch": "2.11.0+cu130",
+   "transformers": "5.19.0",
+   "datasets": "4.8.5",
+   "sentence-transformers": "5.7.0",
+   "scikit-learn": "1.6.1",
+   "numpy": "2.1.3",
+   "pandas": "2.2.3",
+   "openai": "2.54.0",
+   "xgboost": "3.4.1"
+  }
+ },
+ "service_calls": {
+  "n": 0,
+  "failures": 0,
+  "seconds": 0
+ }
+}
